@@ -1,5 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Strategies from "../views/Strategies.vue";
+import Draft from "../views/Draft.vue";
+import CreatePreset from "../components/CreatePreset.vue";
+import Drafts from "../components/Drafts.vue";
+import NoRiskPreset from "../components/NoRiskPreset.vue";
 
 const routes = [
   {
@@ -8,19 +13,37 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/strategies",
+    name: "Strategies",
+    component: Strategies,
+  },
+  {
+    path: "/drafts/filter",
+    name: "FilterDrafts",
+    component: Drafts,
+  },
+  {
+    path: "/drafts/add/backtest",
+    name: "AddDrafts",
+    component: NoRiskPreset,
+  },
+  {
+    path: "/drafts",
+    name: "Drafts",
+    component: Draft,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: CreatePreset,
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
+  linkActiveClass: "active",
+  linkExactActiveClass: "active",
 });
 
 export default router;
